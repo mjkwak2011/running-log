@@ -16,16 +16,18 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/init', { method: 'POST' }).finally(() => {
-      Promise.all([
-        fetch('/api/runs').then(r => r.json()),
-        fetch('/api/goals').then(r => r.json()),
-      ]).then(([runsData, goalData]) => {
-        setRuns(Array.isArray(runsData) ? runsData : []);
-        setGoal(goalData ?? null);
-        setLoading(false);
+    fetch('/api/init', { method: 'POST' })
+      .finally(() => {
+        Promise.all([
+          fetch('/api/runs').then(r => r.json()).catch(() => []),
+          fetch('/api/goals').then(r => r.json()).catch(() => null),
+        ]).then(([runsData, goalData]) => {
+          setRuns(Array.isArray(runsData) ? runsData : []);
+          setGoal(goalData ?? null);
+        }).finally(() => {
+          setLoading(false);
+        });
       });
-    });
   }, []);
 
   const handleAddRun = async (run: RunInput) => {

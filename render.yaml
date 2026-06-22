@@ -3,7 +3,7 @@ services:
     name: running-log
     runtime: node
     buildCommand: npm install --include=dev && npm run build
-    startCommand: npm start
+    startCommand: npx next start -p $PORT
     plan: free
     envVars:
       - key: TURSO_URL

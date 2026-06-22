@@ -10,5 +10,3 @@ services:
         sync: false
       - key: TURSO_TOKEN
         sync: false
-      - key: ANTHROPIC_API_KEY
-        sync: false

@@ -6,7 +6,6 @@ import RunList from './RunList';
 import StatsRow from './StatsRow';
 import WeeklyChart from './WeeklyChart';
 import GoalPanel from './GoalPanel';
-import AIAnalysis from './AIAnalysis';
 
 type RunInput = Omit<Run, 'id' | 'created_at'>;
 
@@ -90,7 +89,6 @@ export default function Dashboard() {
           </div>
           <div className="lg:col-span-2 space-y-6">
             <GoalPanel goal={goal} runs={runs} onSave={handleSaveGoal} />
-            <AIAnalysis runs={runs} goal={goal} />
           </div>
         </div>
       </main>
